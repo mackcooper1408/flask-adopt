@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
-from flask_wtf import FlaskForm
-from wtforms import StringField
 from models import db, connect_db, Pet
+# from forms import PetAddForm
 
 app = Flask(__name__)
 
@@ -20,12 +19,19 @@ debug = DebugToolbarExtension(app)
 def homepage():
     pets = Pet.query.all()
     return render_template("homepage.html", pets=pets)
-    
-"""@app.route('/add')
+
+"""@app.route('/add', methods=["GET","POST"])
 def add_pet():
     form = AddPetForm()
     if form.validate_on_submit():
         name = form.name.data
+        species = form.species.data
         image = form.imageurl.data
         age = form.age.data
+        notes = form.notes.data
+        flash(f"Added {name} who a {age} {species})
+        return redirect("/add")
+    else:
+        return render_template("snack_add_form.html" form = form)
+
     """

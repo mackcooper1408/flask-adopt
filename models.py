@@ -5,9 +5,9 @@ db = SQLAlchemy()
 
 class Pet(db.Model):
     """ Pet Model """
-    
+
     __tablename__ = "pets"
-    
+
     id = db.Column(db.Integer,
                    primary_key=True,
                    autoincrement=True)
@@ -17,7 +17,7 @@ class Pet(db.Model):
                         nullable=False)
     photo_url = db.Column(db.Text,
                           nullable=False,
-                          default='')
+                          default='https://bit.ly/379ZauR')
     age = db.Column(db.Text,
                     nullable=False)
     notes = db.Column(db.Text)
@@ -39,7 +39,13 @@ def example_data():
                age="old",
                available=True)
 
-    db.session.add_all([pet1, pet2])
+    pet3 = Pet(name="Bob",
+               species="giraffe",
+               photo_url="https://bit.ly/3dwO0kS",
+               age="baby",
+               available=False)
+
+    db.session.add_all([pet1, pet2, pet3])
     db.session.commit()
 
 

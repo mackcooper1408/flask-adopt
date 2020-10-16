@@ -9,28 +9,31 @@
 {% endblock %}
 
 {% block content %}
-<div class="media flex-column align-items-start">
-    {% for pet in pets %}
-      <img class="rounded" src={{pet.photo_url}} width="200px" height="auto">
-      <div class="media-body m-2">
-        <p>
-            Name: {{pet.name}} 
-        </p>
-        {% if pet.available %}
-        <a href="/" class="list-group-item list-group-item-action pl-1 pt-0 pb-0 pr-0 rounded">
-            Adopt Me!
-        </a>
-            {% else %}
-        <p>
-            Not Available Right Now...
-        </p>
-            {% endif %}
-      </div>
-      
-    {% endfor %}
-    <form class="align-self-center">
+    <div class="row">
+{% for pet in pets %}
+        <div class="col-6">
+            <div class="media flex-column align-items-start">
+                <img class="rounded sm" src={{pet.photo_url}} width="auto" height="180vh">
+                <div class="media-body m-2 mb-4">
+                    <p>
+                        Name: {{pet.name}} 
+                    </p>
+                    {% if pet.available %}
+                    <a href="/" class="list-group-item list-group-item-action pl-1 pt-0 pb-0 pr-0 rounded">
+                        Adopt Me!
+                    </a>
+                    {% else %}
+                    <p>
+                        Not Available Right Now...
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <form class="text-center mt-4">
         <button class="btn btn-primary" formaction="/add">Add Pet!</button>
     </form>
-</div>
-
+    
 {% endblock %}
