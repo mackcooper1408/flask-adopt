@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Pets
+{% endblock %}
+
+{% block content %}
+<div class="media">
+    {% for pet in pets}
+      <img src={{pet.photo_url}} height=100px width=100px>
+      <div class="media-body">
+          <p>
+            Name: {{pet.name}} 
+          </p>
+          <p>
+            Availability: {{pet.available}} 
+          </p>
+      </div>
+      
+    {% forend %}
+</div>
+
+{% endblock %}
