@@ -4,20 +4,33 @@
   Pets
 {% endblock %}
 
+{% block header %}
+<h1 class="text-center">COME ADOPT US!</h1>
+{% endblock %}
+
 {% block content %}
-<div class="media">
-    {% for pet in pets}
-      <img src={{pet.photo_url}} height=100px width=100px>
-      <div class="media-body">
-          <p>
+<div class="media flex-column align-items-start">
+    {% for pet in pets %}
+      <img class="rounded" src={{pet.photo_url}} width="200px" height="auto">
+      <div class="media-body m-2">
+        <p>
             Name: {{pet.name}} 
-          </p>
-          <p>
-            Availability: {{pet.available}} 
-          </p>
+        </p>
+        {% if pet.available %}
+        <a href="/" class="list-group-item list-group-item-action pl-1 pt-0 pb-0 pr-0 rounded">
+            Adopt Me!
+        </a>
+            {% else %}
+        <p>
+            Not Available Right Now...
+        </p>
+            {% endif %}
       </div>
       
-    {% forend %}
+    {% endfor %}
+    <form class="align-self-center">
+        <button class="btn btn-primary" formaction="/add">Add Pet!</button>
+    </form>
 </div>
 
 {% endblock %}
