@@ -16,7 +16,6 @@ class Pet(db.Model):
     species = db.Column(db.Text,
                         nullable=False)
     photo_url = db.Column(db.Text,
-                          nullable=False,
                           default='https://bit.ly/379ZauR')
     age = db.Column(db.Text,
                     nullable=False)
@@ -25,6 +24,23 @@ class Pet(db.Model):
                           nullable=False,
                           default=True)
 
+
+class RandPet(db.Model):
+    """ Random Pet Model """
+
+    __tablename__ = "random_pets"
+
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    name = db.Column(db.Text,
+                     nullable=False)
+    species = db.Column(db.Text,
+                        nullable=False)
+    photo_url = db.Column(db.Text,
+                          default='https://bit.ly/379ZauR')
+    age = db.Column(db.Text,
+                    nullable=False)
 
 def example_data():
     pet1 = Pet(name="Fido",

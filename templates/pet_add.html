@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-TITLE
+Add Pet
 {% endblock %}
 
 {% block header %}
@@ -18,9 +18,13 @@ TITLE
     <p>
         {{ field.label }}
         {{ field }}
+
+        {% for error in field.errors %}
+            {{ error }}
+        {% endfor %}
     </p>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Submit your Pet</button>
+    <button type="submit" class="btn btn-secondary">Submit your Pet</button>
   
 </form>
 

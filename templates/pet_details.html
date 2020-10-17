@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pets
+{% endblock %}
+
+{% block header %}
+<h1 class="text-center">Meet {{pet.name}}!</h1>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col">
+    <div class="media flex-column align-items-center">
+      <img class="rounded sm" src="{{pet.photo_url}}" width="auto" height="300vh">
+      <div class="media-body m-2 mb-4 text-center">
+        <p>
+          About: {{pet.name}} the {{pet.species}} is {{pet.age}}!
+        </p>
+        {% if pet.available %}
+        <a href="/" class="list-group-item list-group-item-action pl-1 pt-0 pb-0 pr-0 rounded">
+          Adopt Me!
+        </a>
+        {% else %}
+        <p>
+          Not Available Right Now...
+        </p>
+        {% endif %}
+        <p>Notes: {{ pet.notes }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<form action="/{{ pet.id }}" method="POST" class="text-center mt-4">
+  {{ form.hidden_tag() }}
+
+  {% for field in form if field.widget.input_type != 'hidden' %}
+
+  <p>
+      {{ field.label }}
+      {{ field }}
+
+      {% for error in field.errors %}
+        {{ error }}
+      {% endfor %}
+  </p>
+  {% endfor %}
+
+  <button class="btn btn-secondary" type="submit">Add New Information Here!</button>
+</form>
+
+{% endblock %}
